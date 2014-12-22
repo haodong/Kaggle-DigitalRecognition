@@ -11,8 +11,8 @@ function [lambdaVec, errorTrain, errorVal] = validationCurve(initial_nn_params, 
 	for i = 1:n
 		lambda = lambdaVec(i);
 		nn_params = train(layer_size, X, y, lambda, initial_nn_params);
-		errorTrain(i) = nnCostFunction(nn_params, layer_size, X, y, lambda);
-		errorVal(i) = nnCostFunction(nn_params, layer_size, Xval, yval, lambda);
+		errorTrain(i) = nnCostFunction(nn_params, layer_size, X, y, 0);
+		errorVal(i) = nnCostFunction(nn_params, layer_size, Xval, yval, 0);
 	end
 
 end
