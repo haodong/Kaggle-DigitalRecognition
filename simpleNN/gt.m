@@ -1,8 +1,6 @@
 fprintf('Training ...\n');
-nn_params = train(layer_size, Z, y, lambda, nn_params, 700);
-test(nn_params, layer_size, Z, y);
-test(nn_params, layer_size, Zval, yval);
-test(nn_params, layer_size, Ztest, ytest);
+nn_params = train(layer_size, Z, y, lambda, nn_params, 1000);
+test(nn_params, layer_size, Z, y, Zval, yval, Ztest, ytest, lambda);
 fprintf('Training completed.\n');
 
 fprintf('Writing predicted results ...\n');
