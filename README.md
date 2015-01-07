@@ -9,14 +9,14 @@ Originally code were modified from Andrew Ng's course *Machine Learning*.
 
 1.	Customize hidden layer, user could add as many hidden layers as they want.
 2.	Sharpen function, which would polarize the pixel value to be either 0 or 255, the default is 194.
-3.	Principle component Analysis, so user should change the `K` value in `gg.m` file as their own.
+3.	Principle component Analysis, so user should change the `K` value in `RunFirst.m` file as their own.
 4.	Automatically select lambda.
-5.	Run `gg.m` first to gain see general results (both accuracy and F1 measurement).
-6.	Then run `gt.m` or not as you wish, which would study the Theta values automatically.
+5.	Run `RunFirst.m` to gain see general results (both accuracy and F1 measurement).
+6.	Then run `RunGoon.m` or not as you wish, which would study the Theta values automatically.
 
 ##	By The Way
 
-1.	The code was **only** tested under **Octave 3.8.1**
+1.	The code was **only** tested under **Octave 3.8.1** and **Matlab2014b**.
 2.	All codes in this repository are under MIT License.
 
 ##	Demo

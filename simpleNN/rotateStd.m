@@ -1,12 +1,14 @@
 function scalarMatrix = rotateStd(scalarMatrix, n_row);
 	[m, n] = size(scalarMatrix);
 	if ~exist('n_row')
-		n_row = n_col = sqrt(n);
+		n_col = sqrt(n);
+		n_row = n_col;
 	else
 		n_col = n / n_row;
 	end
 	for i = 1:m
-		scalarMatrix(i, :) = reshape(scalarMatrix(i, :), n_row, n_col)'(:);
+		temp = reshape(scalarMatrix(i, :), n_row, n_col)';
+		scalarMatrix(i, :) = temp(:);
 	end
 	%outputMatrix = zeros(numel(scalarMatrix),1);
 	%Matrix = reshape(scalarMatrix, n_row, n_col);

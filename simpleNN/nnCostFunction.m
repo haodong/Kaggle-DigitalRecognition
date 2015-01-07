@@ -27,7 +27,7 @@ aPar1 = [ones(m, 1) X];
 for i = 2:n
 	varA = ['aPar', int2str(i)];
 	varZ = ['zPar', int2str(i)];
-	eval([varZ, ' = aPar', int2str(i-1), ' * Theta', int2str(i-1), "';"]);
+	eval([varZ, ' = aPar', int2str(i-1), ' * Theta', int2str(i-1), ''';']);
 	if i == n
 		eval([varA, ' = sigmoid(zPar', int2str(i), ');']);
 	else
@@ -40,7 +40,10 @@ yTemp = bsxfun(@eq, y, 1:net.layers(end));
 jBase = -yTemp .* eval(['log(aPar', int2str(n), ')']) - (1 - yTemp) .* eval(['log(1 - aPar', int2str(n), ')']);
 jRegu = 0;
 for i = 1:n-1
-	eval(['jRegu = jRegu + sumsq(Theta', int2str(i), '(:, 2:end)(:));']);
+	eval(['jTemp = Theta', int2str(i), '(:, 2:end);']);
+	jTemp = jTemp(:);
+	jTemp = jTemp' * jTemp;
+	jRegu = jRegu + jTemp;
 end
 J = (sum(jBase(:)) + jRegu * net.lambda / 2) / m;
 
@@ -50,7 +53,7 @@ for i = n-1:-1:1
 	if i>1
 		eval(['delta', int2str(i), ' = (delta', int2str(i+1), '* Theta', int2str(i), '(:, 2:end)) .* sigmoidGradient(zPar', int2str(i), ');'])
 	end
-	eval(['Delta', int2str(i), ' = delta', int2str(i+1), "' * aPar", int2str(i), ';']);
+	eval(['Delta', int2str(i), ' = delta', int2str(i+1), ''' * aPar', int2str(i), ';']);
 end
 
 %	gradient

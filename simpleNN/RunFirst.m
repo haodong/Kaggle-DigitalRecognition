@@ -13,17 +13,16 @@ clear ; close all; clc
 manualMode = 1;
 fprintf('Loading Data ...\n');
 
-M = csvread ('/Volumes/RamDisk/train.csv');
-N = csvread('/Volumes/RamDisk/test.csv');
-X = M(2:42001,2:785);
+M = csvread ('/Volumes/RamDisk/train.csv', 1, 0);
+N = csvread('/Volumes/RamDisk/test.csv', 1, 0);
+X = M(:,2:785);
 X = rotateStd(X);
-y = M(2:42001,1);
+y = M(:,1);
 y(y==0) = 10;
-Xpred = N(2:28001,:);
-Xpred = rotateStd(Xpred);
+Xpred = rotateStd(N);
 net.K = 100;
 if isfield(net, 'K') && net.K~=0
-	net.layers = [net.K 1000 length(unique(y))];
+	net.layers = [net.K 200 200 length(unique(y))];
 else
 	net.layers = [size(X, 2) 40 30 20 length(unique(y))];
 end

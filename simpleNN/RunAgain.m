@@ -1,14 +1,13 @@
 clear ; close all; clc
 fprintf('Loading Data ...\n');
 load('/Volumes/RamDisk/nn_params.mat');
-M = csvread ('/Volumes/RamDisk/train.csv');
-N = csvread('/Volumes/RamDisk/test.csv');
-X = M(2:42001,2:785);
+M = csvread ('/Volumes/RamDisk/train.csv', 1, 0);
+N = csvread('/Volumes/RamDisk/test.csv', 1, 0);
+X = M(:,2:785);
 X = rotateStd(X);
-y = M(2:42001,1);
+y = M(:,1);
 y(y==0) = 10;
-Xpred = N(2:28001,:);
-Xpred = rotateStd(Xpred);
+Xpred = rotateStd(N);
 
 fprintf('Doing principle components analysis ...\n');
 L = [X; Xpred];
